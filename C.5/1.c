@@ -1,0 +1,89 @@
+﻿//4.2.2猜数游戏
+
+#include <stdio.h>
+
+#include <stdlib.h>
+#include <time.h>
+//以上两行与rand配套使用？？？
+//rand()是c语言系统库里面的一个函数，(跟scanf，printf一样)每次召唤rand()就得到一个随机整数
+//rand使用时：  x%n的结果是 0-n-1的闭区间    所以可以写成x%n+1(也没什么高大上的，就是取余罢了)
+//             因为x是随机得出的，所以对一个随机数用n取余完了就可以得到0-n的范围内的一个随机数
+
+int main(void)
+{   
+    //number是计算机想的数字；count是猜的次数;a是用户猜的数
+    srand(time(0));
+    int number=rand()%100+1;
+    int count=0;
+    int a=0;
+    printf("计算机已经想好了一个100以内的正整数\n");
+    printf("这个数字是%d\n",number);
+
+    do                       //到下面用while循环再写一遍
+    {
+        count++;
+        printf("请输入你猜的数字\n");
+        scanf("%d",&a);
+
+         if (a>number)
+        {
+            printf("大了\n");              
+        } else if (a<number)
+        {
+            printf("小了\n");                    //这个if、else及其级联 又迷糊了，今天下午去南一整理信息时抽空复习一遍
+        } else
+        {
+            break;
+        }
+    }  while(count<10);         //这样的话，10次之内才对了则跳出，10次还猜不对依旧会跳出 
+        //下面的还是有问题，在于次数是10、11次这里
+    
+    // do 
+    // {
+    //     if (count>10)
+    //     {
+    //         break;               //这个break用的是否正确
+    //     } else if (a<number)
+    //     {
+    //         printf("小了\n");                    //这个if、else及其级联 又迷糊了，今天下午去南一整理信息时抽空复习一遍
+    //     } else if (a>number)
+    //     {
+    //         printf("大了\n");
+    //     }            //注意：上面三个情况A-B-C，若A、B成立，则C直接被忽略了，所以说不能像下面这样写
+
+    //     // if (a>number)
+    //     // {
+    //     //     printf("大了\n");
+    //     // } else if (a<number)
+    //     // {
+    //     //     printf("小了\n");                    //这个if、else及其级联 又迷糊了，今天下午去南一整理信息时抽空复习一遍
+    //     // } else if (count>10)
+    //     // {
+    //     //     break;
+    //     // }
+              
+    // } while (a!=number);
+
+    // printf("您共计用了%d次猜出了这个数\n",count);
+    // printf("这个数字就是%d\n",number);                    //可以做个当n大于多少时就出发特定语句
+    if (count==1)
+    {
+        printf("你这个邮电nb了呀,花了1次就猜对了\n");
+    } else if (count<=10&&count>1&&a==number)             //这里我犯了一个错误，赋值号“=”和等于号“==”是不一样的，优先级：等于>&&>赋值号
+    // } else if (count<=10&&count>1&&a=number)      这是我原来的代码
+
+    {
+        printf("just so so,你花了%d次才猜对\n",count);
+    } else {
+        printf("重开吧，没用了你已经，输了%d次还不对\n",count);
+        return 0;
+    }                                       
+    //关于这个else-if级联用法，我是不是可以理解为：
+    //else if是用来表明接下来是另一种情况，即情况总数是 首if的一次+尾else的一次+中间else if的次数
+    
+   
+        
+
+
+    return 0;
+}
