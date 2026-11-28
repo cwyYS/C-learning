@@ -19,25 +19,26 @@ int main(void)
     printf("计算机已经想好了一个100以内的正整数\n");
     printf("这个数字是%d\n",number);
 
-    do                       //到下面用while循环再写一遍
-    {
-        count++;
-        printf("请输入你猜的数字\n");
-        scanf("%d",&a);
+    // do                       //到下面用while循环再写一遍
+    // {
+    //     count++;
+    //     printf("请输入你猜的数字\n");
+    //     scanf("%d",&a);
 
-         if (a>number)
-        {
-            printf("大了\n");              
-        } else if (a<number)
-        {
-            printf("小了\n");                    //这个if、else及其级联 又迷糊了，今天下午去南一整理信息时抽空复习一遍
-        } else
-        {
-            break;
-        }
-    }  while(count<10);         //这样的话，10次之内才对了则跳出，10次还猜不对依旧会跳出 
+    //      if (a>number)
+    //     {
+    //         printf("大了\n");              
+    //     } else if (a<number)
+    //     {
+    //         printf("小了\n");                    //这个if、else及其级联 又迷糊了，今天下午去南一整理信息时抽空复习一遍
+    //     } else
+    //     {
+    //         break;
+    //     }
+    // }  while(count<10);        
+     //这样的话，10次之内才对了则跳出，10次还猜不对依旧会跳出 
         //下面的还是有问题，在于次数是10、11次这里
-    
+    //下面这段是错的 
     // do 
     // {
     //     if (count>10)
@@ -45,7 +46,7 @@ int main(void)
     //         break;               //这个break用的是否正确
     //     } else if (a<number)
     //     {
-    //         printf("小了\n");                    //这个if、else及其级联 又迷糊了，今天下午去南一整理信息时抽空复习一遍
+    //         printf("小了\n");                    //这个if、else及其级联 又迷糊了
     //     } else if (a>number)
     //     {
     //         printf("大了\n");
@@ -66,6 +67,23 @@ int main(void)
 
     // printf("您共计用了%d次猜出了这个数\n",count);
     // printf("这个数字就是%d\n",number);                    //可以做个当n大于多少时就出发特定语句
+   
+    while (count<=10)
+    {
+        if (number>a)
+        {
+            printf("大了\n");
+        } else if (number<a)
+        {
+            printf('小了\n');
+        } else
+        {
+            break;
+        }    
+    }                 //不论是while还是do-while，关键居然都是要想到应该用count与10的关系
+    
+   
+   
     if (count==1)
     {
         printf("你这个邮电nb了呀,花了1次就猜对了\n");
